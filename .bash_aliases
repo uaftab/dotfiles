@@ -1,0 +1,1 @@
+alias lsa='echo "---- DIR ----" && ls -la --color=always | grep --color=never "^d" && echo "--- FILES ---" && ls -la --color=always | grep "^-" --color=never && echo "---- LINKS ----" && ls -la --color=always | grep "^l" --color=never'
