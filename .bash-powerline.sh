@@ -102,7 +102,7 @@ __powerline() {
 	batpath=/usr/local/bin/battery	
 	BATTERYSTATUS=`source "$batpath"`
 
-	PS1="$BG_WHITE$BATTERYSTATUS"
+	PS1="$BG_WHITE\[$BATTERYSTATUS\]"
 	PS1+="$BG_WHITE$FG_RED\u$RESET"
         PS1+="$BG_YELLOW$FG_WHITE \w $RESET"
         PS1+="$BG_BLUE$FG_BASE3$(__git_info)$RESET"
