@@ -1,0 +1,13 @@
+sudo vi /etc/apt/sources.list
+
+Greybird Theme & Elementary Xfce Icon Set
+# Greybird Theme - Shimmer Project
+deb http://ppa.launchpad.net/shimmerproject/daily/ubuntu trusty main 
+deb-src http://ppa.launchpad.net/shimmerproject/daily/ubuntu trusty main
+
+Now before we update, we need to add the key because when you add a third-party repository, you should also add its key to your system.
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 685D1580
+
+Now lets update the system and install the theme & icon set,
+sudo apt-get update
+sudo apt-get install shimmer-themes xubuntu-icon-theme
