@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/lemniscate/Desktop/Tenjin/Tenjin-1.1.1/lib2'
+let g:netrw_dirhist_2='/home/lemniscate/workspace/FAD-Release/qtest'
+let g:netrw_dirhist_3='/home/lemniscate/workspace/FAD-Release'
+let g:netrw_dirhist_4='/home/lemniscate/workspace/PFPSIM/python_temp'
