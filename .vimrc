@@ -28,6 +28,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'ascenator/L9', {'name': 'newL9'}
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scwood/vim-hybrid'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -64,11 +65,14 @@ set softtabstop=4   " Sets the number of columns for a TAB
 set expandtab       " Expand TABs to spaces
 
 syntax on
+set background=dark
+highlight  Normal ctermbg=none
+colorscheme hybrid
 set autoindent
 set number
-highlight LineNr ctermfg=226
-"set cursorline
-hi CursorLineNR cterm=bold
-augroup CLNRSet
-    autocmd! ColorScheme * hi CursorLineNR cterm=bold
-augroup END
+highlight LineNr ctermfg=229
+set cursorline
+"hi CursorLineNR cterm=bold
+"augroup CLNRSet
+"    autocmd! ColorScheme * hi CursorLineNR cterm=bold
+"augroup END
