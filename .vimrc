@@ -66,8 +66,6 @@ set expandtab       " Expand TABs to spaces
 
 syntax on
 set background=dark
-highlight  Normal ctermbg=none
-colorscheme hybrid
 set autoindent
 set number
 highlight LineNr ctermfg=229
@@ -76,3 +74,6 @@ set cursorline
 "augroup CLNRSet
 "    autocmd! ColorScheme * hi CursorLineNR cterm=bold
 "augroup END
+colorscheme hybrid
+highlight  Normal ctermbg=none
+
