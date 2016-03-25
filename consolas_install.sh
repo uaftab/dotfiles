@@ -1,4 +1,5 @@
 #!/bin/sh
+sudo apt-get install cloc
 set -e
 set -x
 mkdir temp
