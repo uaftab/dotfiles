@@ -1,6 +1,8 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
-
+"filetype off                  " required
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+set completeopt=menu,preview
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -29,6 +31,9 @@ Plugin 'ascenator/L9', {'name': 'newL9'}
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scwood/vim-hybrid'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ervandew/supertab'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -76,4 +81,3 @@ set cursorline
 "augroup END
 colorscheme hybrid
 highlight  Normal ctermbg=none
-
