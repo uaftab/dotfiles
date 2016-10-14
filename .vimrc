@@ -34,6 +34,7 @@ Plugin 'scwood/vim-hybrid'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ervandew/supertab'
+Plugin 'taglist.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -81,3 +82,6 @@ set cursorline
 "augroup END
 colorscheme hybrid
 highlight  Normal ctermbg=none
+set tags=./tags,tags;$HOME
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
