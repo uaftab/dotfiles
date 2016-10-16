@@ -27,6 +27,7 @@ cp .vim* ~/
 vim +PluginInstall +qall
 
 cp -R terminator/ ~/config/
+cp .xscreensaver ~/
 sudo apt-get install -y xfce4-*
 sudo apt-get install -y xfce-keyboard-shortcuts
 sudo apt-get install cabextract font-manager
