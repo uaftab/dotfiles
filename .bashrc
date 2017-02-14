@@ -112,4 +112,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-source ~/.bash-powerline.sh
+#source ~/.bash-powerline.sh
+# Only load Liquid Prompt in interactive shells, not from a script or from scp
+[[ $- = *i* ]] && source ~/liquidprompt/liquidprompt
