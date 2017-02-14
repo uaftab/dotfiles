@@ -29,3 +29,16 @@ do
   # take action on each file. $f store current file name
   ln -$symlinkoption $FILE 
 done
+
+cd ~/.config
+
+ln -s ~/dotfiles/terminator
+ln -s ~/dotfiles/liquidpromptrc
+ln -s ~/dotfiles/.fonts/
+
+echo "Cloning Liquidprompt"
+git clone https://github.com/nojhan/liquidprompt.git ~/
+echo "Cloning Vundle"
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+echo "Installing vim plugins"
+vim +PluginInstall +qall

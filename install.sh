@@ -22,16 +22,16 @@ curl -sSf https://static.rust-lang.org/rustup.sh | sh
 
 
 #install vundle 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-cp .vim* ~/
-vim +PluginInstall +qall
+#git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+#cp .vim* ~/
+#vim +PluginInstall +qall
 
-cp -R terminator/ ~/config/
-cp .xscreensaver ~/
+#cp -R terminator/ ~/config/
+#cp .xscreensaver ~/
 sudo apt-get install -y xfce4-*
 sudo apt-get install -y xfce-keyboard-shortcuts
-sudo apt-get install cabextract font-manager
-sudo apt-get install gtk2-engines-murrine
+sudo apt-get install -y cabextract font-manager
+sudo apt-get install -y gtk2-engines-murrine
 cd ~
 mkdir -p ~/.themes
 cd .themes 
@@ -46,4 +46,4 @@ unzip master.zip
 mv elementary*/* .
 rm master.zip
 
-sudo ./battery_install.sh
+#sudo ./battery_install.sh
