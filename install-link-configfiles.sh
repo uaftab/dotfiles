@@ -30,6 +30,7 @@ do
   ln -$symlinkoption $FILE 
 done
 
+ln -$symlinkoption ~/dotfiles/.fonts/
 cd ~/.config
 
 ln -s ~/dotfiles/terminator
