@@ -1,10 +1,11 @@
 #!/bin/bash
 
 cd ~/
-
-echo "Removing Files"
-rm -rf ~/.bash*
-rm -rf ~/.vim*
+backuploc="~/backupconfig"
+mkdir -p $backuploc
+echo "Moving Existing Config Files to backup location [ $backuploc ] "
+mv ~/.bash* $backuploc
+mv ~/.vim* $backuploc
 
 cwd=$(pwd)
 PATH_TO_DOTFILES=~/dotfiles
