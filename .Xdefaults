@@ -1,0 +1,142 @@
+!------------------------------------------------------------------------------
+! Xft settings
+!-------------------------------------------------------------------------------
+
+Xft.dpi:                    96
+Xft.antialias:              true
+Xft.rgba:                   rgb
+Xft.hinting:                true
+Xft.hintstyle:              hintslight
+
+!-------------------------------------------------------------------------------
+! URxvt settings
+!-------------------------------------------------------------------------------
+URxvt.iso14755: off
+URxvt.iso14755_52: off
+
+
+!URxvt.depth:                32
+URxvt.geometry:             90x30
+URxvt.transparent:          true
+URxvt.shading: 25
+
+!Urxvt*depth: 32
+!Urxvt*background: rgba:0000/0000/0200/c800
+URxvt.fading:               25
+!URxvt.urgentOnBell:         true
+URxvt.visualBell:           true
+!URxvt.loginShell:           true
+URxvt.saveLines:            5000000
+!URxvt.internalBorder:       2
+URxvt.lineSpace:            1
+
+! Fonts
+URxvt.allow_bold:           true
+/* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
+!URxvt*font: xft:lemon:pixelsize=13,xft:GohuFont\ Powerline:pixelsize=9
+!URxvt*boldFont: xft:lemon:pixelsize=11,xft:GohuFont\ Powerline:pixelsize=9
+Urxvt.font: "xft:Meslo LG S:pixelsize=14,style=regular"
+! Fix font space
+!URxvt*letterSpace:0
+
+! Scrollbar
+URxvt.scrollStyle:          rxvt
+URxvt.scrollBar:            false
+
+! Add padding
+URxvt.internalBorder: 15
+
+
+! tabbedex is not provided by default (Debian/Ubuntu)
+! put it in ~/.urxvt/
+URxvt.perl-lib: ~/.urxvt/
+URxvt.perl-ext-common:  default,matcher,tabbedex
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
+URxvt.colorUL: #4682B4
+!URxvt.tabbed.tabbar-fg: 2
+!URxvt.tabbed.tabbar-bg: 0
+!URxvt.tabbed.tab-fg: 2
+!URxvt.tabbed.tab-bg: 0
+!URxvt.tabbed.autohide:  yes
+URxvt.tabbed.new-button: yes
+URxvt.tabbed.title: yes
+!URxvt.perl-ext-common: default,matcher,tabbedex
+
+! Launch firefox with the a left click on a URL
+!URxvt.url-launcher: /usr/bin/firefox
+!URxvt.matcher.button: 1
+
+! Tabs: gray background, ~white text
+! and the opposite for the currently focused tab
+URxvt.tabbed.tabbar-fg: 7
+URxvt.tabbed.tabbar-bg: 8
+URxvt.tabbed.tab-fg: 8
+URxvt.tabbed.tab-bg: 7
+
+! Display the title of terminal next to tabs list
+!URxvt.tabbed.title: true
+URxvt.tabbed.title-bg: 8
+URxvt.tabbed.title-fg: 7
+
+
+! Cursor
+URxvt.cursorBlink:          true
+URxvt.cursorColor:          #cccccc
+URxvt.cursorUnderline:      false
+
+! Pointer
+URxvt.pointerBlank:         true
+
+*background: #1c1c1c
+*foreground: #EAEAED
+!!*fading: 40
+*fadeColor: #073642
+*cursorColor: #93a1a1
+*pointerColorBackground: #586e75
+*pointerColorForeground: #93a1a1
+
+!! black dark/light
+*color0: #393638
+*color8: #4A484B
+
+!! red dark/light
+*color1: #97544D
+*color9: #97544D
+
+!! green dark/light
+*color2: #97A293
+*color10: #97A293
+
+!! yellow dark/light
+*color3: #C29F6F
+*color11: #C29F6F
+
+!! blue dark/light
+*color4: #5E606C
+*color12: #5E606C
+
+!! magenta dark/light
+*color5: #7A6054
+*color13: #7A6054
+
+!! cyan dark/light
+*color6: #78746C
+*color14: #78746C
+
+!! white dark/light
+*color7: #C3C1B8
+*color15: #EAEAED
+
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #eaeaed, #eaeaed, #eaeaed
+rofi.color-normal: #eaeaed, #4a484b, #eaeaed, #4a484b, #eaeaed
+rofi.color-active: #fdf6e3, #268bd2, #eee8d5, #268bd2, #fdf6e3
+rofi.color-urgent: #fdf6e3, #dc322f, #eee8d5, #dc322f, #fdf6e3
+rofi.width: 50
+rofi.font: lemon 12
+
+
