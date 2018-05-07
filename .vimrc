@@ -1,87 +1,35 @@
-set nocompatible              " be iMproved, required
-"filetype off                  " required
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
-set completeopt=menu,preview
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+set nocompatible                                "Make vimrc not compatible with vi 
+set modelines=0                                 "Prevent security exploits in modelines
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Tab settings 
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-Plugin 'ascenator/L9', {'name': 'newL9'}
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scwood/vim-hybrid'
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ervandew/supertab'
-Plugin 'taglist.vim'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-set t_Co=256
-set laststatus=2
-let g:airline_theme = 'luna'
-"let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-      let g:airline_symbols = {}
-  endif
-  let g:airline_symbols.space = "\ua0"
-
-
-set tabstop=4       " The width of a TAB is set to 4.
-                    " Still it is a \t. It is just that
-                    " Vim will interpret it to be having
-                    " a width of 4.
-
-set shiftwidth=4    " Indents will have a width of 4
-
-set softtabstop=4   " Sets the number of columns for a TAB
-
-set expandtab       " Expand TABs to spaces
-
-syntax on
-set background=dark
+set encoding=utf-8
+set scrolloff=3
 set autoindent
-set number
-highlight LineNr ctermfg=229
+set showmode
+set showcmd
+set hidden
+set wildmenu
+set wildmode=list:longest
+set visualbell
 set cursorline
-"hi CursorLineNR cterm=bold
-"augroup CLNRSet
-"    autocmd! ColorScheme * hi CursorLineNR cterm=bold
-"augroup END
-colorscheme hybrid
-highlight  Normal ctermbg=none
-set tags=./tags,tags;$HOME
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set laststatus=2                                "Display the status line
+set relativenumber                              "Show relative linenumber of how far each line is form cursor line
+set number                                      "Show line number of cursor line
+set undofile                                    "Create an undofile to make undo function presists after close/reopen
+syntax on                                       "Turn on syntax highlighting
+
+"Searching/Moving functions
+set ignorecase
+set smartcase
+set gdefault
+set showmatch
+set hlsearch
+
