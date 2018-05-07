@@ -16,7 +16,7 @@ URxvt.iso14755_52: off
 
 
 !URxvt.depth:                32
-URxvt.geometry:             90x30
+!URxvt.geometry:             90x30
 URxvt.transparent:          true
 URxvt.shading: 25
 
