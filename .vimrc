@@ -89,6 +89,12 @@ Plug 'rust-lang/rust.vim'
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
+" Theme
+Plug 'ParamagicDev/vim-medic_chalk'
+
+" Plugin ggot git support
+Plug 'tpope/vim-fugitive'
 " Initialize plugin system
 call plug#end()
 
+colorscheme medic_chalk "Load the color theme
