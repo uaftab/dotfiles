@@ -12,6 +12,7 @@
 LOGFILE="/tmp"
 SCRIPTPATH="$(readlink -f ${0} | rev | cut -f2- -d"/" | rev)"
 
+#--------------------------------------------------------------------
 function pass()
 {
     echo -e "\u001b[32;1m[  OK  ]\u001b[0m $1"
@@ -27,12 +28,15 @@ function info()
     echo -e "\u001b[33;1m[ INFO ]\u001b[0m $1"
 }
 
+#--------------------------------------------------------------------
+# Indent the input line
 function indent() 
 {
     sed 's/^/         /';
 }
 #--------------------------------------------------------------------
-#Function to create directories
+# Function to create directories
+# $1=create path
 function createdir()
 {
     tocreate="${1}"
@@ -53,6 +57,9 @@ function createdir()
 }
 
 #--------------------------------------------------------------------
+# Function to link a file 
+# $1=source
+# $2=destination
 function linkfile()
 {
     frompath="${1}"
@@ -148,6 +155,7 @@ function installpackages()
     packagelist+=( "ripgrep" )
     packagelist+=( "byobu" )
     packagelist+=( "meld" )
+    packagelist+=( "tigervnc-*" )
 
     packages=$( IFS=$' '; echo "${packagelist[*]}" )
 
@@ -224,7 +232,7 @@ function installprompt()
         git -C "${pathtolp}" pull &> "${logoutput}"
         gitExitCode=$?
     else
-        git clone https://github.com/nojhan/liquidprompt.git "${pathtolp}" &> "${logoutput}"
+        git clone "https://github.com/nojhan/liquidprompt.git" "${pathtolp}" &> "${logoutput}"
         gitExitCode=$?
     fi
 
@@ -246,7 +254,7 @@ function installprompt()
 
     #2. Install Startship 
     info "Installing startship.rs"
-    yes | sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+    sh -c "$(curl -fsSL https://starship.rs/install.sh)"
     
     info "Reloading bashrc"
     source "$HOME/.bashrc"
@@ -317,6 +325,66 @@ function installGitConfig()
 }
 
 #--------------------------------------------------------------------
+function installVncXstartup()
+{
+    linkfile "${SCRIPTPATH}/xstartup" "${HOME}/.vnc/xstartup"
+}
+
+#--------------------------------------------------------------------
+function installXfceThemes()
+{
+    # Only install on debian
+    checkfordebian="/etc/debian_version" 
+    if [[ -f "${checkfordebian}" ]];
+    then
+        logfile="$LOGFILE/xfceThemes.log"
+        installThemeTo="$HOME/.themes"
+        downloadTo="/tmp/Nordic-darker.tar.xz"
+        info "Installing xfce nice things"
+        createdir "${installThemeTo}"
+        wget -O "${downloadTo}" "https://github.com/EliverLara/Nordic/releases/download/v1.9.0/Nordic-darker.tar.xz"
+        tar -xvf "${downloadTo}" -C "${installThemeTo}" | indent > "${logfile}"
+        extractcode=${PIPESTATUS[0]}
+
+        if [[ $extractcode -ne 0 ]];
+        then
+            fail "Could not install themes"
+            exit $extractcode
+        else
+            rm -f "${downloadTo}"
+        fi
+
+        installIconsTo="$HOME/.icons"
+        createdir "${installIconsTo}"
+        downloadTo="/tmp/FlatMix"
+        createdir "${downloadTo}"
+
+        iconstoinstall="Flat-Remix-Yellow-Light" #This is a dir in this git repo
+        
+        git clone --depth 1 "https://github.com/daniruiz/flat-remix.git" "${downloadTo}"
+        rm -rf "${installIconsTo}/${iconstoinstall}"
+        mv "${downloadTo}/${iconstoinstall}" "${installIconsTo}/${iconstoinstall}"
+        extracticonscode=$?
+        if [[ $extracticonscode -ne 0 ]];
+        then
+            fail "Could not install icons"
+            exit $extracticonscode
+        else
+            rm -rf "${downloadTo}"
+            # Update the icon cache
+            info "Updating icon cache"
+            gtk-update-icon-cache "${installIconsTo}/${iconstoinstall}" | indent 
+            # gsettings set org.gnome.desktop.interface icon-theme "${iconstoinstall}"
+            info "setting icons to ${iconstoinstall}"
+            xfconf-query -c xsettings -p /Net/IconThemeName -s ${iconstoinstall}
+        fi
+
+    else
+        info "OS is not debian - skipping xfce theme installs"
+    fi
+}
+
+#--------------------------------------------------------------------
 function main()
 {
     installXResources
@@ -328,6 +396,8 @@ function main()
     installvimconfig
     installBashPrefrences
     installGitConfig
+    installVncXstartup
+    installXfceThemes
     source $HOME/.bashrc
     pass "Done, Done & Donzel Washington"
 }
