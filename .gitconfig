@@ -10,12 +10,14 @@
     cob = checkout -b
     d = diff
     l = log
-    le = log --oneline
+    le = log --oneline --decorate
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --branches
     st = status
     fixup = !sh -c 'git commit -a -m \"fixup! $(git log -1 --format='%s' $@)\"' -
     squash = !sh -c 'git commit -a -m \"squash! $(git log -1 --format='%s' $@)\"' -
+    st = status
+    sw = show --name-only
     ri = rebase --interactive
     rc = rebase --continue
     pr = push gerrit HEAD:refs/for/master
@@ -34,3 +36,6 @@
     trustExitCode = false
 [diff]
     tool = meld
+[user]
+	name = lemniscate
+	email = contact@uaftab.com
