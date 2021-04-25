@@ -138,8 +138,8 @@ function installpackages()
 
     packagelist=()
     packagelist+=( "vim" )
+    packagelist+=( "neovim" )
     packagelist+=( "git" )
-    packagelist+=( "build-essential" )
     packagelist+=( "clang" )
     packagelist+=( "gcc" )
     packagelist+=( "cmake" )
@@ -148,14 +148,29 @@ function installpackages()
     packagelist+=( "autoconf" )
     packagelist+=( "ninja-build" )
     packagelist+=( "python" )
-    packagelist+=( "python-dev" )
     packagelist+=( "terminator" )
     packagelist+=( "tilix" )
-    packagelist+=( "shellcheck" )
     packagelist+=( "ripgrep" )
     packagelist+=( "byobu" )
     packagelist+=( "meld" )
     packagelist+=( "tigervnc-*" )
+
+    if [[ -f "/etc/debian_version" ]];
+    then
+
+        packagelist+=( "build-essential" )
+        packagelist+=( "python-dev" )
+        packagelist+=( "shellcheck" )
+
+    elif [[ -f "/etc/fedora-release" ]];
+    then
+
+        packagelist+=( "@development-tools" )
+        packagelist+=( "ShellCheck" )
+        packagelist+=( "python-devel" )
+        packagelist+=( "python3-neovim" )
+
+    fi
 
     packages=$( IFS=$' '; echo "${packagelist[*]}" )
 
@@ -193,7 +208,7 @@ function installfzf()
     fzfpath="$HOME/.fzf"
     if [[ -d "${fzfpath}" ]]; then 
         info "Updating fzf already present at ${fzfpath}"
-        git -C "${fzfpath}" pull | indent
+        git -C "${fzfpath}" pull --ff-only | indent
         yes | source "${fzfpath}/install" | indent
     else
         git clone --depth 1 https://github.com/junegunn/fzf.git "${fzfpath}" | indent
@@ -229,10 +244,10 @@ function installprompt()
     gitExitCode=0
     if [[ -d "${pathtolp}" ]];then
         info "${pathtolp} already exists - updating"
-        git -C "${pathtolp}" pull &> "${logoutput}"
+        git -C "${pathtolp}" pull --ff-only > "${logoutput}"
         gitExitCode=$?
     else
-        git clone "https://github.com/nojhan/liquidprompt.git" "${pathtolp}" &> "${logoutput}"
+        git clone "https://github.com/nojhan/liquidprompt.git" "${pathtolp}" > "${logoutput}"
         gitExitCode=$?
     fi
 
@@ -255,7 +270,7 @@ function installprompt()
     #2. Install Startship 
     info "Installing startship.rs"
     sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-    
+    linkfile "$SCRIPTPATH/starship.toml" "$HOME/.config/starship.toml"
     info "Reloading bashrc"
     source "$HOME/.bashrc"
 }
@@ -327,6 +342,7 @@ function installGitConfig()
 #--------------------------------------------------------------------
 function installVncXstartup()
 {
+    createdir "$HOME/.vnc"
     linkfile "${SCRIPTPATH}/xstartup" "${HOME}/.vnc/xstartup"
 }
 

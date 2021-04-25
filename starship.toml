@@ -1,0 +1,33 @@
+add_newline = false
+
+
+[character]
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "
+
+[battery]
+full_symbol = "🔋 "
+charging_symbol = "⚡️ "
+format = "[$symbol$percentage]($style) "
+
+[[battery.display]]
+threshold = 80
+style = "bold red"
+
+[username]
+show_always = true
+
+[status]
+disabled = false
+format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
+style = "bg:yellow"
+
+[hostname]
+disabled=false
+ssh_only = false
+format =  "on [$hostname](yellow) "
+
+[jobs]
+symbol = "+ "
+threshold = 1
+format = "[$symbol$number]($style) "
