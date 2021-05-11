@@ -400,6 +400,12 @@ function installXfceThemes()
     fi
 }
 
+#-------------------------------------------------------------------
+function installAlacrittyConfig()
+{
+    createdir "${HOME}/.config/alacritty"
+    linkfile "${SCRIPTPATH}/alacritty.yml" "${HOME}/.config/alacritty/alacritty.yml"
+}
 #--------------------------------------------------------------------
 function main()
 {
@@ -414,6 +420,8 @@ function main()
     installGitConfig
     installVncXstartup
     installXfceThemes
+    installAlacrittyConfig
+
     source $HOME/.bashrc
     pass "Done, Done & Donzel Washington"
 }
