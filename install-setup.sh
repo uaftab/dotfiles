@@ -154,6 +154,7 @@ function installpackages()
     packagelist+=( "byobu" )
     packagelist+=( "meld" )
     packagelist+=( "tigervnc-*" )
+    packagelist+=( "xrdp" )
 
     if [[ -f "/etc/debian_version" ]];
     then
@@ -406,6 +407,49 @@ function installAlacrittyConfig()
     createdir "${HOME}/.config/alacritty"
     linkfile "${SCRIPTPATH}/alacritty.yml" "${HOME}/.config/alacritty/alacritty.yml"
 }
+
+#-------------------------------------------------------------------
+function installVSCode()
+{
+    checkfordebian="/etc/debian_version"
+    checkforfedora="/etc/fedora-release"
+    if [[ -f "${checkfordebian}" ]];
+    then
+        info "VSCode install - debian"
+        set -x
+        wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+        sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+        sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+        rm -f packages.microsoft.gpg
+        sudo apt install apt-transport-https
+        sudo apt update
+        sudo apt install code
+        set +x
+
+    elif [[ -f "${checkforfedora}" ]];
+    then
+        info "VSCode install - fedora"
+        set -x
+        sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+        sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+        sudo dnf check-update
+        sudo dnf install code
+        set +x
+    else
+        info "OS is other than debian/fedora skip vs code install"
+    fi
+
+}
+
+#-------------------------------------------------------------------
+function installxrdpUsers()
+{
+    info "Adding user to xrdp and ssl-cert"
+    sudo adduser xrdp ssl-cert
+    sudo systemctl restart xrdp
+    info "TODO: manually link startwm.sh from dotfiles to /etc/xrdp"
+}
+
 #--------------------------------------------------------------------
 function main()
 {
@@ -421,6 +465,8 @@ function main()
     installVncXstartup
     installXfceThemes
     installAlacrittyConfig
+    installVSCode
+    installxrdpUsers
 
     source $HOME/.bashrc
     pass "Done, Done & Donzel Washington"
